@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Routes, Route, useNavigate, useParams, useLocation } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import Feedback from "./Feedback";
 import Login from "./Login";
 import Signup from "./Signup";
@@ -10,7 +10,6 @@ export default function Main() {
   const cabinet = useSelector((state) => state.cabinet);
   const goTo = useNavigate();
   const location = useLocation();
-  // const params = useParams("");
 
   useEffect(() => {
     !cabinet.lgn && (location.pathname === "/" || location.pathname === "/profile" || location.pathname === "/signup") ? goTo("/login") : !cabinet.lgn && location.pathname === `/${cabinet.currentUser.username}` ? goTo(`/${cabinet.currentUser.username}`) : goTo("/profile");
