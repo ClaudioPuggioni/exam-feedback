@@ -24,7 +24,7 @@ export default function Main() {
         <Route path={"/login"} element={<Login />} />
         <Route path={"/signup"} element={<Signup />} />
         <Route path={"/profile"} element={<Profile />} />
-        <Route path={`/${cabinet.currentUser.username}`} element={<Feedback />} />
+        {cabinet.currentUser.username ? <Route path={`/${cabinet.currentUser.username}`} element={<Feedback />} /> : null}
       </Routes>
     </div>
   );
