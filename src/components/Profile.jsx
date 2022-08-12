@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../features/dataSlice";
+import { logout, populateFback } from "../features/dataSlice";
 import FbackCard from "./FbackCard";
 
 export default function Profile() {
   const cabinet = useSelector((state) => state.cabinet);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(populateFback(cabinet.currentUser.username));
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <div id="profileContainer">

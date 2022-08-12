@@ -57,3 +57,9 @@
   border-radius: 4px;
   background-color: rgb(177, 177, 177);
 }
+
+.fBackArea {
+  width: 90%;
+  min-height: 500px;
+  height: 100%;
+}

@@ -12,11 +12,25 @@ export default function Main() {
   const location = useLocation();
 
   useEffect(() => {
-    !cabinet.lgn && (location.pathname === "/" || location.pathname === "/profile" || location.pathname === "/signup") ? goTo("/login") : !cabinet.lgn && location.pathname === `/${cabinet.currentUser.username}` ? goTo(`/${cabinet.currentUser.username}`) : goTo("/profile");
+    if (!cabinet.lgn && (location.pathname === "/" || location.pathname === "/profile" || location.pathname === "/signup")) {
+      goTo("/login");
+    } else if (cabinet.lgn) {
+      goTo("/profile");
+    }
     console.log("location is", location);
     console.log("username is", cabinet.currentUser.username);
     // eslint-disable-next-line
   }, [cabinet.lgn]);
+
+  // useEffect(() => {
+  //   if (location.pathname === `/${cabinet.currentUser.username}`) {
+  //     console.log(location.pathname, `/${cabinet.currentUser.username}`);
+  //     goTo(`/${cabinet.currentUser.username}`);
+  //     return;
+  //   }
+  //   if (cabinet.currentUser.username) goTo(`/${cabinet.currentUser.username}`);
+  //   // eslint-disable-next-line
+  // }, [cabinet.currentUser.username]);
 
   return (
     <div id="mainContainer">
@@ -24,7 +38,7 @@ export default function Main() {
         <Route path={"/login"} element={<Login />} />
         <Route path={"/signup"} element={<Signup />} />
         <Route path={"/profile"} element={<Profile />} />
-        {cabinet.currentUser.username ? <Route path={`/${cabinet.currentUser.username}`} element={<Feedback />} /> : null}
+        <Route path="*" element={<Feedback />} />
       </Routes>
     </div>
   );
